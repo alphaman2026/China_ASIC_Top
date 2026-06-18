@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중국 ASIC·IC 설계 기업 100대 보고서</title>
+<style>
+:root{
+  --bg:#0a0e1a; --bg2:#0f1626; --panel:#131c30; --panel2:#1a2540;
+  --border:#243352; --border2:#2e4066;
+  --cyan:#22d3ee; --cyan-dim:#0e7490;
+  --amber:#fbbf24; --amber-dim:#b45309;
+  --navy:#1e3a5f; --text:#e2e8f0; --text-dim:#94a3b8; --text-mute:#64748b;
+  --green:#34d399; --red:#f87171; --purple:#a78bfa;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.6;
+  background-image:radial-gradient(circle at 15% 10%, rgba(34,211,238,0.06), transparent 40%),
+                   radial-gradient(circle at 85% 30%, rgba(251,191,36,0.05), transparent 40%);
+  background-attachment:fixed;
+}
+.mono{font-family:"JetBrains Mono","SF Mono",ui-monospace,Menlo,monospace;}
+
+/* ── Hero ── */
+.hero{
+  position:relative; padding:80px 24px 60px; text-align:center;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(19,28,48,0.6), transparent);
+  overflow:hidden;
+}
+.hero::before{
+  content:""; position:absolute; inset:0;
+  background-image:linear-gradient(rgba(36,51,82,0.4) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(36,51,82,0.4) 1px,transparent 1px);
+  background-size:48px 48px; mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000,transparent);
+  opacity:0.5;
+}
+.hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto;}
+.hero-eyebrow{
+  display:inline-block; font-size:13px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--cyan); border:1px solid var(--cyan-dim); border-radius:100px;
+  padding:6px 18px; margin-bottom:28px; background:rgba(34,211,238,0.08);
+}
+.hero h1{
+  font-size:clamp(34px,6vw,60px); font-weight:800; line-height:1.1; letter-spacing:-1px;
+  background:linear-gradient(135deg,#fff 30%, var(--cyan) 75%, var(--amber));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  margin-bottom:18px;
+}
+.hero .sub{font-size:clamp(16px,2.5vw,22px); color:var(--text-dim); margin-bottom:14px; font-weight:300;}
+.hero .meta{font-size:13px; color:var(--text-mute); letter-spacing:0.5px;}
+
+/* ── Stats ── */
+.stats{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px;
+  max-width:1100px; margin:48px auto 0; padding:0 24px;
+}
+.stat{
+  background:var(--panel); border:1px solid var(--border); border-radius:14px;
+  padding:24px 20px; text-align:center; position:relative; overflow:hidden;
+  transition:transform .2s, border-color .2s;
+}
+.stat:hover{transform:translateY(-3px); border-color:var(--cyan-dim);}
+.stat .num{font-size:38px; font-weight:800; line-height:1;
+  background:linear-gradient(135deg,var(--cyan),var(--amber));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.stat .lbl{font-size:13px; color:var(--text-dim); margin-top:8px;}
+
+/* ── Container ── */
+.wrap{max-width:1280px; margin:0 auto; padding:64px 24px;}
+.section-head{margin-bottom:32px;}
+.section-num{font-size:13px; color:var(--cyan); letter-spacing:2px; font-weight:600; font-family:"JetBrains Mono",monospace;}
+.section-head h2{font-size:clamp(24px,4vw,34px); font-weight:700; margin-top:6px; letter-spacing:-0.5px;}
+.section-head p{color:var(--text-dim); margin-top:10px; max-width:760px; font-size:15px;}
+
+/* ── Highlight callouts ── */
+.callouts{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:24px;}
+.callout{
+  background:linear-gradient(135deg,var(--panel),var(--panel2));
+  border:1px solid var(--border); border-left:3px solid var(--cyan);
+  border-radius:10px; padding:18px 20px;
+}
+.callout.amber{border-left-color:var(--amber);}
+.callout.green{border-left-color:var(--green);}
+.callout h4{font-size:15px; font-weight:700; margin-bottom:6px; color:#fff;}
+.callout p{font-size:13.5px; color:var(--text-dim); line-height:1.55;}
+
+/* ── Sector grid ── */
+.sector-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:8px;}
+.sector-card{
+  background:var(--panel); border:1px solid var(--border); border-radius:12px;
+  overflow:hidden; display:flex; transition:transform .2s, border-color .2s;
+}
+.sector-card:hover{transform:translateY(-3px); border-color:var(--border2);}
+.sector-bar{width:4px; background:var(--sc); flex-shrink:0;}
+.sector-body{padding:18px 20px; flex:1;}
+.sector-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
+.sector-head h3{font-size:16px; font-weight:700; color:#fff;}
+.sector-count{font-size:15px; font-weight:800; color:var(--sc); font-family:"JetBrains Mono",monospace;}
+.sector-players{font-size:12.5px; color:var(--cyan); margin-bottom:8px; line-height:1.5;}
+.sector-note{font-size:12.5px; color:var(--text-mute); line-height:1.5;}
+
+/* ── Filters ── */
+.filters{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;}
+.filter-btn{
+  background:var(--panel); border:1px solid var(--border); color:var(--text-dim);
+  padding:7px 16px; border-radius:100px; font-size:13px; cursor:pointer;
+  transition:all .15s; font-family:inherit;
+}
+.filter-btn:hover{border-color:var(--cyan-dim); color:var(--text);}
+.filter-btn.active{background:var(--cyan); color:#06141b; border-color:var(--cyan); font-weight:700;}
+.search-box{
+  width:100%; max-width:340px; margin-bottom:18px;
+  background:var(--panel); border:1px solid var(--border); border-radius:10px;
+  padding:10px 16px; color:var(--text); font-size:14px; font-family:inherit;
+}
+.search-box:focus{outline:none; border-color:var(--cyan);}
+.search-box::placeholder{color:var(--text-mute);}
+
+/* ── Table ── */
+.table-scroll{overflow-x:auto; border:1px solid var(--border); border-radius:14px; background:var(--panel);}
+table{width:100%; border-collapse:collapse; min-width:1000px;}
+thead th{
+  background:var(--navy); color:#fff; font-size:12.5px; font-weight:700;
+  text-align:left; padding:14px 14px; position:sticky; top:0; z-index:2;
+  border-bottom:2px solid var(--cyan-dim); white-space:nowrap;
+}
+tbody td{padding:11px 14px; font-size:13px; border-bottom:1px solid var(--border); vertical-align:middle;}
+tbody tr{transition:background .12s;}
+tbody tr:hover{background:var(--panel2);}
+.rank{font-family:"JetBrains Mono",monospace; font-weight:700; color:var(--cyan); text-align:center; width:48px;}
+.cname{font-weight:600; color:#fff; min-width:160px;}
+.hq{color:var(--text-dim); white-space:nowrap;}
+.tier-badge{
+  display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:6px;
+  background:color-mix(in srgb, var(--tc) 16%, transparent); color:var(--tc);
+  border:1px solid color-mix(in srgb, var(--tc) 35%, transparent); white-space:nowrap;
+}
+.sector-cell{color:var(--text-dim); min-width:160px;}
+.rev{font-family:"JetBrains Mono",monospace; color:var(--amber); white-space:nowrap; font-weight:600;}
+.foundry{color:var(--text-dim); font-size:12px; min-width:150px;}
+.node{font-family:"JetBrains Mono",monospace; color:var(--purple); font-size:12px; white-space:nowrap;}
+.outlook{font-size:12px; min-width:280px; line-height:1.45;}
+.ol-vpos{color:var(--green);} .ol-pos{color:#7dd3fc;} .ol-stable{color:var(--text-dim);}
+.ol-mod{color:var(--amber);} .ol-neg{color:var(--red);}
+.hidden{display:none !important;}
+
+/* ── Foundry table ── */
+.f-name{font-weight:700; color:#fff;}
+.stars{color:var(--amber); letter-spacing:2px; font-size:13px;}
+.f-node{font-family:"JetBrains Mono",monospace; color:var(--purple); font-size:12px;}
+.f-cust{color:var(--text-dim); font-size:12px; min-width:240px;}
+.f-note{color:var(--text-mute); font-size:12px; min-width:220px;}
+
+/* ── Analysis ── */
+.analysis-block{
+  background:var(--panel); border:1px solid var(--border); border-radius:14px;
+  padding:28px 30px; margin-bottom:20px;
+}
+.analysis-block h3{
+  font-size:19px; font-weight:700; color:#fff; margin-bottom:14px;
+  display:flex; align-items:center; gap:10px;
+}
+.analysis-block h3::before{content:""; width:6px; height:22px; background:linear-gradient(var(--cyan),var(--amber)); border-radius:3px;}
+.analysis-block > p{color:var(--text-dim); font-size:14.5px; margin-bottom:14px;}
+.analysis-block ul{list-style:none;}
+.analysis-block li{
+  font-size:13.5px; color:var(--text-dim); padding:6px 0 6px 22px; position:relative; line-height:1.55;
+}
+.analysis-block li::before{content:"▸"; position:absolute; left:0; color:var(--cyan);}
+.analysis-block li b{color:#fff;}
+.risk h3::before{background:linear-gradient(var(--red),var(--amber));}
+.risk li::before{color:var(--red);}
+.cat h3::before{background:linear-gradient(var(--green),var(--cyan));}
+.cat li::before{color:var(--green);}
+
+/* ── Disclaimer ── */
+.disclaimer{
+  background:rgba(251,191,36,0.07); border:1px solid var(--amber-dim); border-radius:12px;
+  padding:18px 22px; margin-top:24px; font-size:13px; color:#fcd34d; line-height:1.6;
+}
+.disclaimer b{color:var(--amber);}
+
+/* ── Footer ── */
+footer{border-top:1px solid var(--border); padding:40px 24px; text-align:center; color:var(--text-mute); font-size:13px;}
+footer .sources{max-width:900px; margin:0 auto 20px; text-align:left;}
+footer .sources h4{color:var(--text-dim); font-size:14px; margin-bottom:10px; text-align:center;}
+footer .sources p{font-size:12px; line-height:1.7; color:var(--text-mute);}
+
+/* ── Nav ── */
+.topnav{
+  position:sticky; top:0; z-index:50; backdrop-filter:blur(12px);
+  background:rgba(10,14,26,0.8); border-bottom:1px solid var(--border);
+  display:flex; gap:6px; padding:10px 24px; overflow-x:auto; align-items:center;
+}
+.topnav .brand{font-weight:800; font-size:15px; color:#fff; margin-right:auto; white-space:nowrap;}
+.topnav a{color:var(--text-dim); font-size:13px; text-decoration:none; padding:6px 12px; border-radius:8px; white-space:nowrap; transition:all .15s;}
+.topnav a:hover{color:var(--cyan); background:var(--panel);}
+
+@media(max-width:640px){
+  .hero{padding:50px 18px 40px;}
+  .wrap{padding:44px 16px;}
+  .analysis-block{padding:20px;}
+  .topnav .brand{font-size:13px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <span class="brand">🇨🇳 中 ASIC·IC 100</span>
+  <a href="#summary">개요</a>
+  <a href="#sectors">분야</a>
+  <a href="#ranking">순위</a>
+  <a href="#foundry">파운드리</a>
+  <a href="#analysis">전략분석</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow">2024–2025 시장 분석 · 기밀 자료</span>
+    <h1>중국 ASIC·IC 설계 기업<br>매출 순위 100대 보고서</h1>
+    <p class="sub">분야 · 연간 매출 · 파운드리 · 공정 노드 · 향후 전망 종합 분석</p>
+    <p class="meta">기준: 2024~2025 (추정치 포함) | 작성: Claude AI Research · 2026년 4월</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="num">100</div><div class="lbl">분석 대상 기업</div></div>
+    <div class="stat"><div class="num">18</div><div class="lbl">AI칩 / GPU 기업</div></div>
+    <div class="stat"><div class="num">42%</div><div class="lbl">2025 AI칩 국산 점유율</div></div>
+    <div class="stat"><div class="num">$16B</div><div class="lbl">2025 AI칩 시장규모</div></div>
+    <div class="stat"><div class="num">99%</div><div class="lbl">BTC ASIC 글로벌 독점</div></div>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. 개요 -->
+<section class="wrap" id="summary">
+  <div class="section-head">
+    <span class="section-num">01 / EXECUTIVE SUMMARY</span>
+    <h2>개요 및 핵심 요약</h2>
+    <p>중국 ASIC·IC 설계 산업은 AI 가속칩에 대한 폭발적 내수, 미·중 반도체 기술 디커플링, 전례 없는 규모의 정부 자본 투입이라는 세 가지 동력으로 구조적 전환기를 맞고 있습니다. 2024~2025년 기준 중국은 글로벌 팹리스 매출 점유율 약 9~12%로 미국(68%), 대만(21%)에 이은 세계 3위입니다.</p>
+  </div>
+  <div class="callouts">
+    <div class="callout"><h4>HiSilicon · Ascend</h4><p>Ascend AI칩과 CloudMatrix 클러스터로 엔비디아 데이터센터 GPU의 국산 대안으로 자리매김</p></div>
+    <div class="callout green"><h4>Cambricon 폭증</h4><p>2025 상반기 매출 +4,348% YoY, 사상 첫 흑자 전환. Siyuan 590 SMIC N+2 양산</p></div>
+    <div class="callout green"><h4>Hygon +45%</h4><p>2025 상반기 매출 +45%, 서버 CPU+DCU 가속기 전략 성공. Sugon 합병으로 HPC 강화</p></div>
+    <div class="callout amber"><h4>Bitmain + MicroBT</h4><p>전 세계 BTC ASIC 99% 독점 (Bitmain 82%, MicroBT 15%). 관세 회피 미국 생산 이전</p></div>
+    <div class="callout"><h4>SMIC N+2 집중</h4><p>Cambricon·Biren·Moore Threads·MetaX·HiSilicon 모두 동일 7nm급 노드 → 공급 집중 리스크</p></div>
+    <div class="callout amber"><h4>Big Fund III</h4><p>3,440억 위안(역대 최대) 2024년 투입. AI반도체·고성능메모리·장비 집중</p></div>
+  </div>
+  <div class="disclaimer">
+    <b>⚠ 주의사항:</b> 본 보고서의 비상장사(Bitmain, MicroBT, HiSilicon, T-Head, Kunlunxin 등) 매출은 제3자 리서치 기관의 업계 추정치입니다. 전통 팹리스 IC 설계사와 더불어 핵심 IP가 자체 ASIC 설계인 채굴 하드웨어 기업을 포함한 광의의 'ASIC 설계 생태계'를 다룹니다. 별도 표기가 없으면 모든 금액은 USD 기준입니다.
+  </div>
+</section>
+
+<!-- 2. 분야별 -->
+<section class="wrap" id="sectors">
+  <div class="section-head">
+    <span class="section-num">02 / SECTOR OVERVIEW</span>
+    <h2>분야별 현황 요약</h2>
+    <p>100개 기업은 12개 기술 버티컬로 구분됩니다. AI칩/GPU 가속기가 가장 빠르게 성장하는 분야이며, 비트코인 채굴 ASIC은 매출 집중도 기준 중국이 글로벌을 지배하는 대표 하위 분야입니다.</p>
+  </div>
+  <div class="sector-grid">
+    
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#22d3ee"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>AI칩 / GPU 가속기</h3>
+        <span class="sector-count" style="--sc:#22d3ee">15+</span>
+      </div>
+      <p class="sector-players">HiSilicon, Cambricon, Hygon, Moore Threads, Biren, MetaX, Enflame</p>
+      <p class="sector-note">가장 빠른 성장 분야. 엔비디아 GPU 수입대체</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#fbbf24"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>비트코인 채굴 ASIC</h3>
+        <span class="sector-count" style="--sc:#fbbf24">5+</span>
+      </div>
+      <p class="sector-players">Bitmain, MicroBT, Canaan, Ebang, Innosilicon</p>
+      <p class="sector-note">3사가 글로벌 99% 독점. BTC 가격 연동 순환성</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#a78bfa"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>모바일AP / SoC</h3>
+        <span class="sector-count" style="--sc:#a78bfa">5+</span>
+      </div>
+      <p class="sector-players">HiSilicon Kirin, UNISOC, Rockchip, Allwinner</p>
+      <p class="sector-note">신흥국 스마트폰 성장, 5G 중급 칩셋 확대</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#34d399"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>CMOS 이미지센서(CIS)</h3>
+        <span class="sector-count" style="--sc:#34d399">3+</span>
+      </div>
+      <p class="sector-players">Will Semi(OmniVision), Galaxycore</p>
+      <p class="sector-note">차량·보안카메라 CIS 급증, CIS 매출 글로벌 3위</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#60a5fa"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>MCU / 마이크로컨트롤러</h3>
+        <span class="sector-count" style="--sc:#60a5fa">15+</span>
+      </div>
+      <p class="sector-players">GigaDevice, Geehy, Nationz, Injoinic, Chipsea</p>
+      <p class="sector-note">백색가전·차량·산업 국산화 흐름</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#f472b6"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>RF 프론트엔드</h3>
+        <span class="sector-count" style="--sc:#f472b6">4+</span>
+      </div>
+      <p class="sector-players">Maxscend, Vanchip, SiGe</p>
+      <p class="sector-note">5G 스마트폰 RF 콘텐츠 가치 증가, GaAs PA 특화</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#fb923c"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>전력반도체 / PMIC</h3>
+        <span class="sector-count" style="--sc:#fb923c">10+</span>
+      </div>
+      <p class="sector-players">Silergy, StarPower, BYD Semi, Fine Made</p>
+      <p class="sector-note">전기차·재생에너지·AI서버 전력관리 수요</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#818cf8"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>FPGA</h3>
+        <span class="sector-count" style="--sc:#818cf8">3+</span>
+      </div>
+      <p class="sector-players">Pango Micro, Fudan Micro, Corerain</p>
+      <p class="sector-note">정부 국산화 명령: Xilinx/Altera 대체 우선순위</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#2dd4bf"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>서버 CPU / x86 / RISC-V</h3>
+        <span class="sector-count" style="--sc:#2dd4bf">5+</span>
+      </div>
+      <p class="sector-players">Hygon, Zhaoxin, Loongson, Phytium, StarFive</p>
+      <p class="sector-note">데이터센터 자립화, RISC-V로 미국 IP 의존 축소</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#facc15"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>광 트랜시버 / 광 IC</h3>
+        <span class="sector-count" style="--sc:#facc15">3+</span>
+      </div>
+      <p class="sector-players">InnoLight, Eoptolink, CG Semi</p>
+      <p class="sector-note">AI 데이터센터 400G/800G CPO 붐, 2025~2027 슈퍼사이클</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#c084fc"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>디스플레이드라이버IC</h3>
+        <span class="sector-count" style="--sc:#c084fc">5+</span>
+      </div>
+      <p class="sector-players">Galaxycore, Chipone, New Vision, Lontium</p>
+      <p class="sector-note">AMOLED 스마트폰·OLED TV DDI 국산화</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sector-bar" style="--sc:#4ade80"></div>
+    <div class="sector-body">
+      <div class="sector-head">
+        <h3>EDA / IP</h3>
+        <span class="sector-count" style="--sc:#4ade80">3+</span>
+      </div>
+      <p class="sector-players">Empyrean, Primarius, Xpeedic, Arm China</p>
+      <p class="sector-note">설계툴 자립화: Synopsys/Cadence 제재 하 최우선 정책</p>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- 3. 순위 -->
+<section class="wrap" id="ranking">
+  <div class="section-head">
+    <span class="section-num">03 / TOP 100 RANKING</span>
+    <h2>매출 순위 100대 기업</h2>
+    <p>추정 연간 매출 기준 정렬. 상장사는 공시 자료, 비상장사는 업계 리서치·제3자 분석·무역 데이터 기반 추정치입니다. 아래 필터·검색으로 분야별 탐색이 가능합니다.</p>
+  </div>
+  <input type="text" class="search-box" id="searchBox" placeholder="🔍 기업명 또는 분야 검색...">
+  <div class="filters" id="filters"><button class="filter-btn active" data-filter="all">전체</button><button class="filter-btn" data-filter="AI">AI</button><button class="filter-btn" data-filter="ASIC">ASIC</button><button class="filter-btn" data-filter="전력">전력</button><button class="filter-btn" data-filter="MCU">MCU</button><button class="filter-btn" data-filter="CPU">CPU</button><button class="filter-btn" data-filter="FPGA">FPGA</button><button class="filter-btn" data-filter="CIS">CIS</button><button class="filter-btn" data-filter="RF">RF</button><button class="filter-btn" data-filter="DDI">DDI</button><button class="filter-btn" data-filter="광통신">광통신</button><button class="filter-btn" data-filter="아날로그">아날로그</button><button class="filter-btn" data-filter="AP">AP</button><button class="filter-btn" data-filter="메모리">메모리</button><button class="filter-btn" data-filter="기타">기타</button></div>
+  <div class="table-scroll">
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th>#</th><th>기업명</th><th>본사</th><th>분류</th><th>주력 분야</th>
+          <th>연매출(추정)</th><th>파운드리</th><th>공정노드</th><th>향후 전망</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr data-tier="AI" data-name="hisilicon (海思半导체)" data-sector="ai칩/모바일ap/통신">
+    <td class="rank">1</td>
+    <td class="cname">HiSilicon (海思半导체)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI칩/모바일AP/통신</td>
+    <td class="rev">~$20억</td>
+    <td class="foundry">SMIC(주력), TSMC(제재 전)</td>
+    <td class="node">7nm(N+2), 14nm</td>
+    <td class="outlook ol-vpos">매우 긍정적 — Ascend AI칩 수요 급증, CloudMatrix 클러스터로 엔비디아 시스템과 경쟁</td>
+  </tr>
+<tr data-tier="CIS" data-name="will semiconductor (韦尔)" data-sector="cmos 이미지센서/아날로그">
+    <td class="rank">2</td>
+    <td class="cname">Will Semiconductor (韦尔)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#34d399">CIS</span></td>
+    <td class="sector-cell">CMOS 이미지센서/아날로그</td>
+    <td class="rev">~$28.8억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-pos">긍정적 — 차량·보안카메라 CIS 수요 증가, OmniVision 인수로 글로벌 3위</td>
+  </tr>
+<tr data-tier="ASIC" data-name="bitmain (比特大陆)" data-sector="비트코인 채굴 asic">
+    <td class="rank">3</td>
+    <td class="cname">Bitmain (比特大陆)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#fbbf24">ASIC</span></td>
+    <td class="sector-cell">비트코인 채굴 ASIC</td>
+    <td class="rev">~$15억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">3nm(TSMC), 7nm(SMIC)</td>
+    <td class="outlook ol-pos">긍정적 — BTC 가격 상승 수혜, 관세 회피 위해 미국 생산 이전 추진</td>
+  </tr>
+<tr data-tier="AP" data-name="unisoc (紫光展锐)" data-sector="모바일ap/5g칩/iot">
+    <td class="rank">4</td>
+    <td class="cname">UNISOC (紫光展锐)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#a78bfa">AP</span></td>
+    <td class="sector-cell">모바일AP/5G칩/IoT</td>
+    <td class="rev">~$17.8억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">6nm~28nm</td>
+    <td class="outlook ol-pos">긍정적 — 신흥국 스마트폰 확대, 5G IoT 성장</td>
+  </tr>
+<tr data-tier="AI" data-name="hygon (海光信息)" data-sector="서버 cpu/gpu 가속기">
+    <td class="rank">5</td>
+    <td class="cname">Hygon (海光信息)</td>
+    <td class="hq">청두</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">서버 CPU/GPU 가속기</td>
+    <td class="rev">~$10.9억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">12nm~14nm</td>
+    <td class="outlook ol-vpos">매우 긍정적 — 2025 상반기 매출 +45%, AI서버 수혜, Sugon 합병</td>
+  </tr>
+<tr data-tier="AI" data-name="cambricon (寒武纪)" data-sector="ai 추론/학습칩">
+    <td class="rank">6</td>
+    <td class="cname">Cambricon (寒武纪)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI 추론/학습칩</td>
+    <td class="rev">~$7.7억(H1)</td>
+    <td class="foundry">SMIC(N+2)</td>
+    <td class="node">7nm(N+2)</td>
+    <td class="outlook ol-vpos">매우 긍정적 — 2025 상반기 매출 +4,348%, 첫 흑자, Siyuan 590 양산</td>
+  </tr>
+<tr data-tier="ASIC" data-name="microbt (微比特)" data-sector="비트코인 채굴 asic">
+    <td class="rank">7</td>
+    <td class="cname">MicroBT (微比特)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#fbbf24">ASIC</span></td>
+    <td class="sector-cell">비트코인 채굴 ASIC</td>
+    <td class="rev">~$7억</td>
+    <td class="foundry">TSMC, Samsung</td>
+    <td class="node">5nm~7nm</td>
+    <td class="outlook ol-pos">긍정적 — Whatsminer 시리즈, BTC ASIC 15% 점유, 미국 생산 추진</td>
+  </tr>
+<tr data-tier="MCU" data-name="gigadevice (兆易创新)" data-sector="nor flash/mcu">
+    <td class="rank">8</td>
+    <td class="cname">GigaDevice (兆易创新)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">NOR Flash/MCU</td>
+    <td class="rev">~$8억</td>
+    <td class="foundry">TSMC, SMIC, Hua Hong</td>
+    <td class="node">55nm~90nm</td>
+    <td class="outlook ol-stable">안정적 — 세계 1위 팹리스 NOR Flash, MCU 국산화 수혜</td>
+  </tr>
+<tr data-tier="기타" data-name="goodix (汇顶科技)" data-sector="지문인식/터치ic/생체인식">
+    <td class="rank">9</td>
+    <td class="cname">Goodix (汇顶科技)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">지문인식/터치IC/생체인식</td>
+    <td class="rev">~$5.7억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 차량용 생체인식 진출, 스마트폰 지문IC 강세</td>
+  </tr>
+<tr data-tier="전력" data-name="silergy (矽力杰)" data-sector="아날로그/전력관리ic(pmic)">
+    <td class="rank">10</td>
+    <td class="cname">Silergy (矽力杰)</td>
+    <td class="hq">항저우</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">아날로그/전력관리IC(PMIC)</td>
+    <td class="rev">~$5.5억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">0.18μm~55nm</td>
+    <td class="outlook ol-pos">긍정적 — 전기차·AI서버 전력관리 수요 성장</td>
+  </tr>
+<tr data-tier="RF" data-name="maxscend (卓胜微)" data-sector="rf 프론트엔드">
+    <td class="rank">11</td>
+    <td class="cname">Maxscend (卓胜微)</td>
+    <td class="hq">우시</td>
+    <td><span class="tier-badge" style="--tc:#f472b6">RF</span></td>
+    <td class="sector-cell">RF 프론트엔드</td>
+    <td class="rev">~$3.2억</td>
+    <td class="foundry">TSMC, Win Semi</td>
+    <td class="node">0.18μm~28nm</td>
+    <td class="outlook ol-stable">안정적 — 5G RF 시장 지속 성장</td>
+  </tr>
+<tr data-tier="ASIC" data-name="canaan (嘉楠科技)" data-sector="비트코인 채굴 asic">
+    <td class="rank">12</td>
+    <td class="cname">Canaan (嘉楠科技)</td>
+    <td class="hq">항저우</td>
+    <td><span class="tier-badge" style="--tc:#fbbf24">ASIC</span></td>
+    <td class="sector-cell">비트코인 채굴 ASIC</td>
+    <td class="rev">~$2.5억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">7nm~28nm</td>
+    <td class="outlook ol-mod">보통 — 점유율 2%, 나스닥 상장(CAN)</td>
+  </tr>
+<tr data-tier="CIS" data-name="galaxycore (格科微)" data-sector="cmos 이미지센서/ddi">
+    <td class="rank">13</td>
+    <td class="cname">Galaxycore (格科微)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#34d399">CIS</span></td>
+    <td class="sector-cell">CMOS 이미지센서/DDI</td>
+    <td class="rev">~$4.2억</td>
+    <td class="foundry">SMIC, Hua Hong</td>
+    <td class="node">0.11μm~0.18μm</td>
+    <td class="outlook ol-stable">안정적 — 저가형 스마트폰 CIS 1위, DDI 확장</td>
+  </tr>
+<tr data-tier="AI" data-name="montage (澜起科技)" data-sector="메모리 인터페이스/서버칩">
+    <td class="rank">14</td>
+    <td class="cname">Montage (澜起科技)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">메모리 인터페이스/서버칩</td>
+    <td class="rev">~$3.5억</td>
+    <td class="foundry">TSMC</td>
+    <td class="node">7nm~16nm</td>
+    <td class="outlook ol-pos">긍정적 — AI서버 DDR5/HBM 인터페이스 수요 증가</td>
+  </tr>
+<tr data-tier="RF" data-name="vanchip (唯捷创芯)" data-sector="rf power amplifier">
+    <td class="rank">15</td>
+    <td class="cname">Vanchip (唯捷创芯)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#f472b6">RF</span></td>
+    <td class="sector-cell">RF Power Amplifier</td>
+    <td class="rev">~$2.8억</td>
+    <td class="foundry">Win Semi, SMIC</td>
+    <td class="node">0.18μm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 5G 스마트폰 PA 수요, GaAs 특화</td>
+  </tr>
+<tr data-tier="ASIC" data-name="innosilicon (芯动科技)" data-sector="채굴asic/gpu ip/fpga ip">
+    <td class="rank">16</td>
+    <td class="cname">Innosilicon (芯动科技)</td>
+    <td class="hq">우한</td>
+    <td><span class="tier-badge" style="--tc:#fbbf24">ASIC</span></td>
+    <td class="sector-cell">채굴ASIC/GPU IP/FPGA IP</td>
+    <td class="rev">~$3억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">7nm~28nm</td>
+    <td class="outlook ol-pos">긍정적 — GPU 아키텍처 IP, 채굴 외 사업 다각화</td>
+  </tr>
+<tr data-tier="AI" data-name="moore threads (摩尔线程)" data-sector="gpu/ai 가속기">
+    <td class="rank">17</td>
+    <td class="cname">Moore Threads (摩尔线程)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">GPU/AI 가속기</td>
+    <td class="rev">~$2억</td>
+    <td class="foundry">SMIC(N+2)</td>
+    <td class="node">7nm</td>
+    <td class="outlook ol-pos">긍정적 — 국내 GPU 수요 수혜, 빠른 성장세</td>
+  </tr>
+<tr data-tier="AI" data-name="biren (壁仞科技)" data-sector="ai gpu (br100/br200)">
+    <td class="rank">18</td>
+    <td class="cname">Biren (壁仞科技)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI GPU (BR100/BR200)</td>
+    <td class="rev">~$1억</td>
+    <td class="foundry">SMIC(N+2)</td>
+    <td class="node">7nm</td>
+    <td class="outlook ol-pos">긍정적 — 엔티티리스트 후 SMIC 전환 완료, AI칩 경쟁력</td>
+  </tr>
+<tr data-tier="AI" data-name="horizon robotics (地平线)" data-sector="자율주행 ai soc">
+    <td class="rank">19</td>
+    <td class="cname">Horizon Robotics (地平线)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">자율주행 AI SoC</td>
+    <td class="rev">~$2.5억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">16nm~28nm</td>
+    <td class="outlook ol-vpos">매우 긍정적 — 중국 ADAS칩 1위, 2024년 홍콩 상장</td>
+  </tr>
+<tr data-tier="전력" data-name="starpower (时代电气)" data-sector="전력반도체(igbt/sic)">
+    <td class="rank">20</td>
+    <td class="cname">StarPower (时代电气)</td>
+    <td class="hq">주저우</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">전력반도체(IGBT/SiC)</td>
+    <td class="rev">~$4억</td>
+    <td class="foundry">자체+외주</td>
+    <td class="node">1μm~0.18μm</td>
+    <td class="outlook ol-pos">긍정적 — 전기차 IGBT, SiC 모듈 양산</td>
+  </tr>
+<tr data-tier="AI" data-name="alibaba t-head (平头哥)" data-sector="ai추론/클라우드 cpu">
+    <td class="rank">21</td>
+    <td class="cname">Alibaba T-Head (平头哥)</td>
+    <td class="hq">항저우</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI추론/클라우드 CPU</td>
+    <td class="rev">내부(알리바바)</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">5nm~7nm</td>
+    <td class="outlook ol-pos">긍정적 — 알리클라우드 AI 가속, Xuantie RISC-V 생태계</td>
+  </tr>
+<tr data-tier="AI" data-name="baidu kunlunxin (昆仑芯)" data-sector="ai 추론칩(xpu)">
+    <td class="rank">22</td>
+    <td class="cname">Baidu Kunlunxin (昆仑芯)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI 추론칩(XPU)</td>
+    <td class="rev">내부(바이두)</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">7nm~14nm</td>
+    <td class="outlook ol-pos">긍정적 — 바이두 ERNIE AI 클라우드 내재화</td>
+  </tr>
+<tr data-tier="AI" data-name="enflame (燧原科技)" data-sector="ai 학습/추론 soc">
+    <td class="rank">23</td>
+    <td class="cname">Enflame (燧原科技)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI 학습/추론 SoC</td>
+    <td class="rev">~$1억</td>
+    <td class="foundry">TSMC → SMIC</td>
+    <td class="node">7nm</td>
+    <td class="outlook ol-pos">긍정적 — 텐센트 투자, AI 데이터센터 확장</td>
+  </tr>
+<tr data-tier="AI" data-name="metax (沐曦集成电路)" data-sector="ai gpu (cuda 호환)">
+    <td class="rank">24</td>
+    <td class="cname">MetaX (沐曦集成电路)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI GPU (CUDA 호환)</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">SMIC(N+2)</td>
+    <td class="node">7nm</td>
+    <td class="outlook ol-mod">보통 — CUDA 호환 SW 생태계 구축 중</td>
+  </tr>
+<tr data-tier="FPGA" data-name="unigroup guoxin (紫光国微)" data-sector="스마트카드/fpga/보안칩">
+    <td class="rank">25</td>
+    <td class="cname">Unigroup Guoxin (紫光国微)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#818cf8">FPGA</span></td>
+    <td class="sector-cell">스마트카드/FPGA/보안칩</td>
+    <td class="rev">~$4억</td>
+    <td class="foundry">SMIC, TSMC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 정부·금융 보안칩 수요</td>
+  </tr>
+<tr data-tier="AI" data-name="sophgo (算能科技)" data-sector="ai 추론/엣지ai">
+    <td class="rank">26</td>
+    <td class="cname">SOPHGO (算能科技)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI 추론/엣지AI</td>
+    <td class="rev">~$2억</td>
+    <td class="foundry">TSMC → SMIC</td>
+    <td class="node">7nm~12nm</td>
+    <td class="outlook ol-mod">보통 — 미국 엔티티리스트, 국내 시장 집중</td>
+  </tr>
+<tr data-tier="AI" data-name="iluvatar corex (天数智芯)" data-sector="ai gpu 가속기">
+    <td class="rank">27</td>
+    <td class="cname">Iluvatar CoreX (天数智芯)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI GPU 가속기</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">12nm~14nm</td>
+    <td class="outlook ol-mod">보통 — 상장 추진, 국내 수요 의존</td>
+  </tr>
+<tr data-tier="AI" data-name="moffett ai (墨芯)" data-sector="스파스 ai 추론칩">
+    <td class="rank">28</td>
+    <td class="cname">Moffett AI (墨芯)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">스파스 AI 추론칩</td>
+    <td class="rev">초기단계</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">7nm~12nm</td>
+    <td class="outlook ol-mod">보통 — 스파스 연산 특화, 틈새 시장</td>
+  </tr>
+<tr data-tier="FPGA" data-name="fudan micro (复旦微电子)" data-sector="fpga/스마트카드/전력ic">
+    <td class="rank">29</td>
+    <td class="cname">Fudan Micro (复旦微电子)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#818cf8">FPGA</span></td>
+    <td class="sector-cell">FPGA/스마트카드/전력IC</td>
+    <td class="rev">~$2.5억</td>
+    <td class="foundry">SMIC, Hua Hong</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — FPGA 국산화 수혜, 정부 조달</td>
+  </tr>
+<tr data-tier="FPGA" data-name="pango micro (安路科技)" data-sector="fpga">
+    <td class="rank">30</td>
+    <td class="cname">Pango Micro (安路科技)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#818cf8">FPGA</span></td>
+    <td class="sector-cell">FPGA</td>
+    <td class="rev">~$1억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-pos">긍정적 — FPGA 국산화 정책, 방위·산업 수요</td>
+  </tr>
+<tr data-tier="AP" data-name="rockchip (瑞芯微)" data-sector="iot/태블릿/미디어 soc">
+    <td class="rank">31</td>
+    <td class="cname">Rockchip (瑞芯微)</td>
+    <td class="hq">푸저우</td>
+    <td><span class="tier-badge" style="--tc:#a78bfa">AP</span></td>
+    <td class="sector-cell">IoT/태블릿/미디어 SoC</td>
+    <td class="rev">~$3억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">8nm~22nm</td>
+    <td class="outlook ol-stable">안정적 — 엣지AI 기기 SoC, 산업 IoT</td>
+  </tr>
+<tr data-tier="AP" data-name="allwinner (全志科技)" data-sector="iot/미디어 soc">
+    <td class="rank">32</td>
+    <td class="cname">Allwinner (全志科技)</td>
+    <td class="hq">주하이</td>
+    <td><span class="tier-badge" style="--tc:#a78bfa">AP</span></td>
+    <td class="sector-cell">IoT/미디어 SoC</td>
+    <td class="rev">~$1.5억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">22nm~40nm</td>
+    <td class="outlook ol-stable">안정적 — 저가 임베디드 SoC, 스마트 디스플레이</td>
+  </tr>
+<tr data-tier="MCU" data-name="ingenic (君正集成)" data-sector="mcu/저전력 soc">
+    <td class="rank">33</td>
+    <td class="cname">Ingenic (君正集成)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">MCU/저전력 SoC</td>
+    <td class="rev">~$1억</td>
+    <td class="foundry">SMIC, Hua Hong</td>
+    <td class="node">40nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 웨어러블·산업 IoT MCU</td>
+  </tr>
+<tr data-tier="DDI" data-name="chipone (集创北方)" data-sector="디스플레이드라이버ic/tddi">
+    <td class="rank">34</td>
+    <td class="cname">Chipone (集创北方)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#c084fc">DDI</span></td>
+    <td class="sector-cell">디스플레이드라이버IC/TDDI</td>
+    <td class="rev">~$0.8억</td>
+    <td class="foundry">SMIC, TSMC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — OLED 스마트폰 DDI 확장</td>
+  </tr>
+<tr data-tier="기타" data-name="nationz (国民技术)" data-sector="보안칩/nfc/블루투스">
+    <td class="rank">35</td>
+    <td class="cname">Nationz (国民技术)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">보안칩/NFC/블루투스</td>
+    <td class="rev">~$0.8억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 모바일 결제 NFC칩 선두</td>
+  </tr>
+<tr data-tier="메모리" data-name="biwin (佰维存储)" data-sector="nand 컨트롤러">
+    <td class="rank">36</td>
+    <td class="cname">Biwin (佰维存储)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#f87171">메모리</span></td>
+    <td class="sector-cell">NAND 컨트롤러</td>
+    <td class="rev">~$2억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">40nm~55nm</td>
+    <td class="outlook ol-mod">보통 — NAND 가격 사이클 변동성</td>
+  </tr>
+<tr data-tier="CPU" data-name="zhaoxin (兆芯)" data-sector="x86 호환 cpu">
+    <td class="rank">37</td>
+    <td class="cname">Zhaoxin (兆芯)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#2dd4bf">CPU</span></td>
+    <td class="sector-cell">x86 호환 CPU</td>
+    <td class="rev">~$1억</td>
+    <td class="foundry">SMIC, TSMC</td>
+    <td class="node">16nm~28nm</td>
+    <td class="outlook ol-mod">보통 — 정부 조달 의존, 성능 격차 존재</td>
+  </tr>
+<tr data-tier="CPU" data-name="loongson (龙芯中科)" data-sector="loongarch cpu">
+    <td class="rank">38</td>
+    <td class="cname">Loongson (龙芯中科)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#2dd4bf">CPU</span></td>
+    <td class="sector-cell">LoongArch CPU</td>
+    <td class="rev">~$1억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">12nm~28nm</td>
+    <td class="outlook ol-mod">보통 — 국가 주도 국산화, 정부 IT 조달</td>
+  </tr>
+<tr data-tier="CPU" data-name="phytium (飞腾)" data-sector="arm 서버 cpu">
+    <td class="rank">39</td>
+    <td class="cname">Phytium (飞腾)</td>
+    <td class="hq">톈진</td>
+    <td><span class="tier-badge" style="--tc:#2dd4bf">CPU</span></td>
+    <td class="sector-cell">ARM 서버 CPU</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">TSMC → SMIC</td>
+    <td class="node">7nm~12nm</td>
+    <td class="outlook ol-mod">보통 — 미국 제재 영향, SMIC 전환</td>
+  </tr>
+<tr data-tier="MCU" data-name="zbit (致真微电子)" data-sector="nor flash/mcu">
+    <td class="rank">40</td>
+    <td class="cname">Zbit (致真微电子)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">NOR Flash/MCU</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">SMIC, Hua Hong</td>
+    <td class="node">55nm~90nm</td>
+    <td class="outlook ol-stable">안정적 — 가전용 NOR Flash</td>
+  </tr>
+<tr data-tier="MCU" data-name="chipsea (芯海科技)" data-sector="아날로그/mcu/센서ic">
+    <td class="rank">41</td>
+    <td class="cname">Chipsea (芯海科技)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">아날로그/MCU/센서IC</td>
+    <td class="rev">~$0.8억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">55nm~0.18μm</td>
+    <td class="outlook ol-stable">안정적 — 백색가전·산업 MCU</td>
+  </tr>
+<tr data-tier="MCU" data-name="sino wealth (中颖电子)" data-sector="mcu/디스플레이드라이버">
+    <td class="rank">42</td>
+    <td class="cname">Sino Wealth (中颖电子)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">MCU/디스플레이드라이버</td>
+    <td class="rev">~$1억</td>
+    <td class="foundry">SMIC, Hua Hong</td>
+    <td class="node">0.11μm~0.25μm</td>
+    <td class="outlook ol-stable">안정적 — 가전 MCU 전문</td>
+  </tr>
+<tr data-tier="전력" data-name="byd semiconductor (比亚迪半导体)" data-sector="igbt/mcu/차량용ic">
+    <td class="rank">43</td>
+    <td class="cname">BYD Semiconductor (比亚迪半导体)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">IGBT/MCU/차량용IC</td>
+    <td class="rev">~$3억</td>
+    <td class="foundry">자체+외주</td>
+    <td class="node">0.35μm~90nm</td>
+    <td class="outlook ol-pos">긍정적 — BYD EV 내재화, 차량용 IGBT 양산</td>
+  </tr>
+<tr data-tier="전력" data-name="sanan opto (三安光电)" data-sector="led칩/화합물반도체">
+    <td class="rank">44</td>
+    <td class="cname">Sanan Opto (三安光电)</td>
+    <td class="hq">샤먼</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">LED칩/화합물반도체</td>
+    <td class="rev">~$5억</td>
+    <td class="foundry">자체(SiC/GaN)</td>
+    <td class="node">화합물 반도체</td>
+    <td class="outlook ol-pos">긍정적 — EV·태양광 SiC 전력소자 확대</td>
+  </tr>
+<tr data-tier="메모리" data-name="dosilicon (多芯智能)" data-sector="dram 컨트롤러/메모리ic">
+    <td class="rank">45</td>
+    <td class="cname">Dosilicon (多芯智能)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#f87171">메모리</span></td>
+    <td class="sector-cell">DRAM 컨트롤러/메모리IC</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-mod">보통 — 틈새 메모리 컨트롤러</td>
+  </tr>
+<tr data-tier="CPU" data-name="starfive (赛昉科技)" data-sector="risc-v soc/프로세서">
+    <td class="rank">46</td>
+    <td class="cname">StarFive (赛昉科技)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#2dd4bf">CPU</span></td>
+    <td class="sector-cell">RISC-V SoC/프로세서</td>
+    <td class="rev">~$0.2억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">12nm~28nm</td>
+    <td class="outlook ol-pos">긍정적 — 오픈소스 RISC-V 생태계, 정부 지원</td>
+  </tr>
+<tr data-tier="전력" data-name="triductor (三合半导체)" data-sector="전력반도체/드라이버ic">
+    <td class="rank">47</td>
+    <td class="cname">Triductor (三合半导체)</td>
+    <td class="hq">쑤저우</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">전력반도체/드라이버IC</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">Hua Hong, SMIC</td>
+    <td class="node">0.35μm~0.18μm</td>
+    <td class="outlook ol-stable">안정적 — 산업용 전력소자</td>
+  </tr>
+<tr data-tier="아날로그" data-name="sgmicro (圣邦微电子)" data-sector="아날로그ic/ldo/op-amp">
+    <td class="rank">48</td>
+    <td class="cname">SGMICRO (圣邦微电子)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#4ade80">아날로그</span></td>
+    <td class="sector-cell">아날로그IC/LDO/Op-Amp</td>
+    <td class="rev">~$1.2억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">0.18μm~55nm</td>
+    <td class="outlook ol-pos">긍정적 — 아날로그 국산화 정책 수혜</td>
+  </tr>
+<tr data-tier="AP" data-name="morningcore (晶晨)" data-sector="스마트tv/ott soc">
+    <td class="rank">49</td>
+    <td class="cname">Morningcore (晶晨)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#a78bfa">AP</span></td>
+    <td class="sector-cell">스마트TV/OTT SoC</td>
+    <td class="rev">~$2억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">12nm~28nm</td>
+    <td class="outlook ol-stable">안정적 — 스마트TV 플랫폼 SoC, IPTV</td>
+  </tr>
+<tr data-tier="기타" data-name="bdstar (北斗星通)" data-sector="gps/beidou gnss칩">
+    <td class="rank">50</td>
+    <td class="cname">BDStar (北斗星通)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">GPS/BeiDou GNSS칩</td>
+    <td class="rev">~$1.5억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-pos">긍정적 — BeiDou 항법시스템 수혜</td>
+  </tr>
+<tr data-tier="전력" data-name="smartlink (芯联集成)" data-sector="전력반도체/sic 모듈">
+    <td class="rank">51</td>
+    <td class="cname">Smartlink (芯联集成)</td>
+    <td class="hq">사오싱</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">전력반도체/SiC 모듈</td>
+    <td class="rev">~$1.5억</td>
+    <td class="foundry">자체</td>
+    <td class="node">SiC 650V~1700V</td>
+    <td class="outlook ol-pos">긍정적 — EV SiC 모듈 증설</td>
+  </tr>
+<tr data-tier="전력" data-name="injoinic (英集芯)" data-sector="고속충전/usb pd 전력ic">
+    <td class="rank">52</td>
+    <td class="cname">Injoinic (英集芯)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">고속충전/USB PD 전력IC</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-pos">긍정적 — USB PD 고속충전 확산</td>
+  </tr>
+<tr data-tier="전력" data-name="fine made (华润微)" data-sector="전력반도체/아날로그ic">
+    <td class="rank">53</td>
+    <td class="cname">Fine Made (华润微)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">전력반도체/아날로그IC</td>
+    <td class="rev">~$3억</td>
+    <td class="foundry">자체+외주</td>
+    <td class="node">0.35μm~0.18μm</td>
+    <td class="outlook ol-pos">긍정적 — 차량·산업 전력IC, IDM/팹리스 병행</td>
+  </tr>
+<tr data-tier="아날로그" data-name="shanghai belling (上海贝岭)" data-sector="전력관리/아날로그ic">
+    <td class="rank">54</td>
+    <td class="cname">Shanghai Belling (上海贝岭)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#4ade80">아날로그</span></td>
+    <td class="sector-cell">전력관리/아날로그IC</td>
+    <td class="rev">~$1억</td>
+    <td class="foundry">Hua Hong, SMIC</td>
+    <td class="node">0.18μm~0.35μm</td>
+    <td class="outlook ol-stable">안정적 — 오랜 아날로그 IC 공급사</td>
+  </tr>
+<tr data-tier="ASIC" data-name="ebang (亿邦国际)" data-sector="채굴asic(btc/eth)">
+    <td class="rank">55</td>
+    <td class="cname">Ebang (亿邦国际)</td>
+    <td class="hq">항저우</td>
+    <td><span class="tier-badge" style="--tc:#fbbf24">ASIC</span></td>
+    <td class="sector-cell">채굴ASIC(BTC/ETH)</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">TSMC → SMIC</td>
+    <td class="node">7nm~10nm</td>
+    <td class="outlook ol-neg">부정적 — 점유율 감소, Bitmain/MicroBT 양강 구도에 고전</td>
+  </tr>
+<tr data-tier="기타" data-name="actions semi (炬芯科技)" data-sector="오디오/iot soc">
+    <td class="rank">56</td>
+    <td class="cname">Actions Semi (炬芯科技)</td>
+    <td class="hq">주하이</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">오디오/IoT SoC</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-mod">보통 — TWS 이어폰 SoC, 경쟁 심화</td>
+  </tr>
+<tr data-tier="MCU" data-name="geehy (极海半导体)" data-sector="mcu/차량용ic">
+    <td class="rank">57</td>
+    <td class="cname">Geehy (极海半导体)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">MCU/차량용IC</td>
+    <td class="rev">~$0.4억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">55nm~90nm</td>
+    <td class="outlook ol-pos">긍정적 — 차량용 MCU 국산화 흐름</td>
+  </tr>
+<tr data-tier="MCU" data-name="maxic (芯旺微电子)" data-sector="mcu">
+    <td class="rank">58</td>
+    <td class="cname">Maxic (芯旺微电子)</td>
+    <td class="hq">쑤저우</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">MCU</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">90nm~0.18μm</td>
+    <td class="outlook ol-stable">안정적 — 범용 MCU</td>
+  </tr>
+<tr data-tier="기타" data-name="memsensing (敏芯微电子)" data-sector="mems 센서/마이크로폰">
+    <td class="rank">59</td>
+    <td class="cname">MEMSensing (敏芯微电子)</td>
+    <td class="hq">우시</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">MEMS 센서/마이크로폰</td>
+    <td class="rev">~$0.4억</td>
+    <td class="foundry">자체 MEMS+SMIC</td>
+    <td class="node">MEMS 전용</td>
+    <td class="outlook ol-pos">긍정적 — IoT·웨어러블 센서, 차량 MEMS</td>
+  </tr>
+<tr data-tier="기타" data-name="sai micro (赛微电子)" data-sector="mems/rf 필터">
+    <td class="rank">60</td>
+    <td class="cname">Sai Micro (赛微电子)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">MEMS/RF 필터</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">자체</td>
+    <td class="node">MEMS 공정</td>
+    <td class="outlook ol-stable">안정적 — 방위·통신 RF MEMS</td>
+  </tr>
+<tr data-tier="아날로그" data-name="wuxi etek (无锡东微)" data-sector="아날로그/전력ic">
+    <td class="rank">61</td>
+    <td class="cname">Wuxi Etek (无锡东微)</td>
+    <td class="hq">우시</td>
+    <td><span class="tier-badge" style="--tc:#4ade80">아날로그</span></td>
+    <td class="sector-cell">아날로그/전력IC</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">55nm~0.18μm</td>
+    <td class="outlook ol-stable">안정적 — 가전·산업 전력관리</td>
+  </tr>
+<tr data-tier="전력" data-name="kiwi instruments (奇捷科技)" data-sector="배터리관리ic/pmu">
+    <td class="rank">62</td>
+    <td class="cname">Kiwi Instruments (奇捷科技)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">배터리관리IC/PMU</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">TSMC</td>
+    <td class="node">0.18μm</td>
+    <td class="outlook ol-stable">안정적 — 가전 배터리관리</td>
+  </tr>
+<tr data-tier="기타" data-name="arm china (安谋科技)" data-sector="cpu/gpu ip 라이선스">
+    <td class="rank">63</td>
+    <td class="cname">Arm China (安谋科技)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">CPU/GPU IP 라이선스</td>
+    <td class="rev">~$1.5억</td>
+    <td class="foundry">없음(IP)</td>
+    <td class="node">N/A</td>
+    <td class="outlook ol-pos">긍정적 — 중국 내 유일 ARM IP 공급, 사실상 독점</td>
+  </tr>
+<tr data-tier="기타" data-name="empyrean (华大九天)" data-sector="eda 소프트웨어">
+    <td class="rank">64</td>
+    <td class="cname">Empyrean (华大九天)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">EDA 소프트웨어</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">없음(SW)</td>
+    <td class="node">N/A</td>
+    <td class="outlook ol-vpos">매우 긍정적 — EDA 국산화 최대 수혜, Cadence/Synopsys 대체</td>
+  </tr>
+<tr data-tier="기타" data-name="primarius (概伦电子)" data-sector="eda 소프트웨어/ip">
+    <td class="rank">65</td>
+    <td class="cname">Primarius (概伦电子)</td>
+    <td class="hq">항저우</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">EDA 소프트웨어/IP</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">없음(SW)</td>
+    <td class="node">N/A</td>
+    <td class="outlook ol-pos">긍정적 — 시뮬레이션 EDA, 정부 국산화 지원</td>
+  </tr>
+<tr data-tier="기타" data-name="telink (泰凌微)" data-sector="블루투스/zigbee/wi-fi iot">
+    <td class="rank">66</td>
+    <td class="cname">Telink (泰凌微)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">블루투스/Zigbee/Wi-Fi IoT</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">SMIC, TSMC</td>
+    <td class="node">40nm~55nm</td>
+    <td class="outlook ol-pos">긍정적 — Matter/Thread 표준 채택, 스마트홈</td>
+  </tr>
+<tr data-tier="DDI" data-name="lontium (合肥联宝)" data-sector="디스플레이 인터페이스/hdmi">
+    <td class="rank">67</td>
+    <td class="cname">Lontium (合肥联宝)</td>
+    <td class="hq">허페이</td>
+    <td><span class="tier-badge" style="--tc:#c084fc">DDI</span></td>
+    <td class="sector-cell">디스플레이 인터페이스/HDMI</td>
+    <td class="rev">~$0.4억</td>
+    <td class="foundry">TSMC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 디스플레이 연결IC, 모니터·TV</td>
+  </tr>
+<tr data-tier="DDI" data-name="analogix china (硅谷数模)" data-sector="디스플레이 인터페이스(edp/hdmi)">
+    <td class="rank">68</td>
+    <td class="cname">Analogix China (硅谷数模)</td>
+    <td class="hq">실리콘밸리/상하이</td>
+    <td><span class="tier-badge" style="--tc:#c084fc">DDI</span></td>
+    <td class="sector-cell">디스플레이 인터페이스(eDP/HDMI)</td>
+    <td class="rev">~$0.8억</td>
+    <td class="foundry">TSMC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 노트북 디스플레이 인터페이스IC</td>
+  </tr>
+<tr data-tier="DDI" data-name="galaxycore display (格科微)" data-sector="디스플레이드라이버ic(ddic)">
+    <td class="rank">69</td>
+    <td class="cname">GalaxyCore Display (格科微)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#c084fc">DDI</span></td>
+    <td class="sector-cell">디스플레이드라이버IC(DDIC)</td>
+    <td class="rev">~$1.5억</td>
+    <td class="foundry">SMIC, Hua Hong</td>
+    <td class="node">55nm~0.11μm</td>
+    <td class="outlook ol-stable">안정적 — AMOLED/LCD DDI</td>
+  </tr>
+<tr data-tier="DDI" data-name="new vision (云英谷)" data-sector="디스플레이드라이버ic/tddi">
+    <td class="rank">70</td>
+    <td class="cname">New Vision (云英谷)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#c084fc">DDI</span></td>
+    <td class="sector-cell">디스플레이드라이버IC/TDDI</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 저가 DDI, 확장 단계</td>
+  </tr>
+<tr data-tier="메모리" data-name="longsys (朗科科技)" data-sector="플래시 스토리지/ssd 컨트롤러">
+    <td class="rank">71</td>
+    <td class="cname">Longsys (朗科科技)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#f87171">메모리</span></td>
+    <td class="sector-cell">플래시 스토리지/SSD 컨트롤러</td>
+    <td class="rev">~$1억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 소비자 SSD·eMMC 컨트롤러</td>
+  </tr>
+<tr data-tier="아날로그" data-name="3peak (思瑞浦)" data-sector="아날로그 신호처리ic">
+    <td class="rank">72</td>
+    <td class="cname">3Peak (思瑞浦)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#4ade80">아날로그</span></td>
+    <td class="sector-cell">아날로그 신호처리IC</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">TSMC</td>
+    <td class="node">0.18μm~28nm</td>
+    <td class="outlook ol-pos">긍정적 — 아날로그 국산화, 산업·의료</td>
+  </tr>
+<tr data-tier="전력" data-name="mornsun (金升阳)" data-sector="전력모듈/dc-dc 변환">
+    <td class="rank">73</td>
+    <td class="cname">Mornsun (金升阳)</td>
+    <td class="hq">광저우</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">전력모듈/DC-DC 변환</td>
+    <td class="rev">~$1.5억</td>
+    <td class="foundry">자체+외주</td>
+    <td class="node">0.18μm~0.35μm</td>
+    <td class="outlook ol-stable">안정적 — 산업용 DC-DC 전력모듈</td>
+  </tr>
+<tr data-tier="전력" data-name="nuvolta (倍加芯)" data-sector="무선충전ic/pmu">
+    <td class="rank">74</td>
+    <td class="cname">Nuvolta (倍加芯)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">무선충전IC/PMU</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">TSMC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-pos">긍정적 — 무선충전 확산, 스마트폰·웨어러블</td>
+  </tr>
+<tr data-tier="AI" data-name="intellifusion (云天励飞)" data-sector="ai 추론/엣지 비전 soc">
+    <td class="rank">75</td>
+    <td class="cname">Intellifusion (云天励飞)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI 추론/엣지 비전 SoC</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">16nm~28nm</td>
+    <td class="outlook ol-mod">보통 — 얼굴인식 규제 리스크, 국내 집중</td>
+  </tr>
+<tr data-tier="AI" data-name="axera (爱芯元智)" data-sector="ai 비전칩/npu">
+    <td class="rank">76</td>
+    <td class="cname">Axera (爱芯元智)</td>
+    <td class="hq">항저우</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI 비전칩/NPU</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">TSMC</td>
+    <td class="node">12nm~22nm</td>
+    <td class="outlook ol-pos">긍정적 — 엣지 AI 카메라 SoC, 감시·로보틱스</td>
+  </tr>
+<tr data-tier="아날로그" data-name="giantec (巨微电子)" data-sector="1-wire ic/eeprom">
+    <td class="rank">77</td>
+    <td class="cname">Giantec (巨微电子)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#4ade80">아날로그</span></td>
+    <td class="sector-cell">1-Wire IC/EEPROM</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">0.18μm~0.35μm</td>
+    <td class="outlook ol-stable">안정적 — 배터리 인증IC, 가전</td>
+  </tr>
+<tr data-tier="FPGA" data-name="pango (fudan 子)" data-sector="fpga(중급)">
+    <td class="rank">78</td>
+    <td class="cname">Pango (Fudan 子)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#818cf8">FPGA</span></td>
+    <td class="sector-cell">FPGA(중급)</td>
+    <td class="rev">(Fudan 산하)</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-pos">긍정적 — 방위·산업 FPGA 국산화</td>
+  </tr>
+<tr data-tier="기타" data-name="topscomm (拓斯达通信)" data-sector="plc/전력선통신칩">
+    <td class="rank">79</td>
+    <td class="cname">Topscomm (拓斯达通信)</td>
+    <td class="hq">청두</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">PLC/전력선통신칩</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">0.18μm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 스마트그리드·AMI 계측칩</td>
+  </tr>
+<tr data-tier="ASIC" data-name="guobo (国博电子)" data-sector="방위/레이더 asic">
+    <td class="rank">80</td>
+    <td class="cname">Guobo (国博电子)</td>
+    <td class="hq">청두</td>
+    <td><span class="tier-badge" style="--tc:#fbbf24">ASIC</span></td>
+    <td class="sector-cell">방위/레이더 ASIC</td>
+    <td class="rev">비공개</td>
+    <td class="foundry">비공개</td>
+    <td class="node">비공개</td>
+    <td class="outlook ol-stable">안정적 — 방위전자, 정부 보장 수요</td>
+  </tr>
+<tr data-tier="광통신" data-name="innolight (新易盛)" data-sector="광 트랜시버/광 ic">
+    <td class="rank">81</td>
+    <td class="cname">InnoLight (新易盛)</td>
+    <td class="hq">쑤저우</td>
+    <td><span class="tier-badge" style="--tc:#facc15">광통신</span></td>
+    <td class="sector-cell">광 트랜시버/광 IC</td>
+    <td class="rev">~$3억</td>
+    <td class="foundry">자체+외주</td>
+    <td class="node">화합물 반도체</td>
+    <td class="outlook ol-vpos">매우 긍정적 — AI 데이터센터 400G/800G CPO 붐</td>
+  </tr>
+<tr data-tier="광통신" data-name="eoptolink (华工科技)" data-sector="광모듈/광 ic">
+    <td class="rank">82</td>
+    <td class="cname">Eoptolink (华工科技)</td>
+    <td class="hq">우한</td>
+    <td><span class="tier-badge" style="--tc:#facc15">광통신</span></td>
+    <td class="sector-cell">광모듈/광 IC</td>
+    <td class="rev">~$2억</td>
+    <td class="foundry">자체</td>
+    <td class="node">광통신 전용</td>
+    <td class="outlook ol-vpos">매우 긍정적 — 하이퍼스케일 AI 클러스터 광 네트워킹 급증</td>
+  </tr>
+<tr data-tier="광통신" data-name="cg semi (长光华芯)" data-sector="레이저 다이오드/광통신ic">
+    <td class="rank">83</td>
+    <td class="cname">CG Semi (长光华芯)</td>
+    <td class="hq">창춘</td>
+    <td><span class="tier-badge" style="--tc:#facc15">광통신</span></td>
+    <td class="sector-cell">레이저 다이오드/광통신IC</td>
+    <td class="rev">~$0.2억</td>
+    <td class="foundry">자체(GaAs)</td>
+    <td class="node">화합물 반도체</td>
+    <td class="outlook ol-pos">긍정적 — AI 광 인터커넥트, LiDAR</td>
+  </tr>
+<tr data-tier="RF" data-name="sige china (硅谷数模 rf)" data-sector="rf/혼성신호 ic">
+    <td class="rank">84</td>
+    <td class="cname">SiGe China (硅谷数模 RF)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#f472b6">RF</span></td>
+    <td class="sector-cell">RF/혼성신호 IC</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">55nm~0.18μm</td>
+    <td class="outlook ol-stable">안정적 — RF 프론트엔드·아날로그 혼성</td>
+  </tr>
+<tr data-tier="FPGA" data-name="corerain (飞数科技)" data-sector="fpga/ai 가속">
+    <td class="rank">85</td>
+    <td class="cname">Corerain (飞数科技)</td>
+    <td class="hq">항저우</td>
+    <td><span class="tier-badge" style="--tc:#818cf8">FPGA</span></td>
+    <td class="sector-cell">FPGA/AI 가속</td>
+    <td class="rev">~$0.2억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">16nm~28nm</td>
+    <td class="outlook ol-mod">보통 — FPGA AI 오버레이, 틈새 가속</td>
+  </tr>
+<tr data-tier="CPU" data-name="xuantie risc-v (平头哥)" data-sector="risc-v cpu ip(오픈소스)">
+    <td class="rank">86</td>
+    <td class="cname">Xuantie RISC-V (平头哥)</td>
+    <td class="hq">항저우</td>
+    <td><span class="tier-badge" style="--tc:#2dd4bf">CPU</span></td>
+    <td class="sector-cell">RISC-V CPU IP(오픈소스)</td>
+    <td class="rev">내부(알리바바)</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">5nm~12nm</td>
+    <td class="outlook ol-pos">긍정적 — 오픈소스 RISC-V, ARM 의존 축소</td>
+  </tr>
+<tr data-tier="전력" data-name="smartlink sic (芯联 확장)" data-sector="sic mosfet/전력소자">
+    <td class="rank">87</td>
+    <td class="cname">Smartlink SiC (芯联 확장)</td>
+    <td class="hq">사오싱</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">SiC MOSFET/전력소자</td>
+    <td class="rev">(Smartlink 산하)</td>
+    <td class="foundry">자체</td>
+    <td class="node">SiC 650V~1200V</td>
+    <td class="outlook ol-pos">긍정적 — EV 전력모듈 SiC 확대</td>
+  </tr>
+<tr data-tier="전력" data-name="greensolution (绿达半도체)" data-sector="sic mosfet/전력소자">
+    <td class="rank">88</td>
+    <td class="cname">GreenSolution (绿达半도체)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#fb923c">전력</span></td>
+    <td class="sector-cell">SiC MOSFET/전력소자</td>
+    <td class="rev">~$0.2억</td>
+    <td class="foundry">자체+외주</td>
+    <td class="node">SiC 650V~1200V</td>
+    <td class="outlook ol-pos">긍정적 — EV·산업 SiC 소자 수요</td>
+  </tr>
+<tr data-tier="아날로그" data-name="akm china (旭日芯科)" data-sector="오디오 dac/adc">
+    <td class="rank">89</td>
+    <td class="cname">AKM China (旭日芯科)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#4ade80">아날로그</span></td>
+    <td class="sector-cell">오디오 DAC/ADC</td>
+    <td class="rev">~$0.2억</td>
+    <td class="foundry">TSMC</td>
+    <td class="node">0.18μm~28nm</td>
+    <td class="outlook ol-stable">안정적 — 프로 오디오·가전</td>
+  </tr>
+<tr data-tier="기타" data-name="xpeedic (芯禾科技)" data-sector="rf eda/em 시뮬레이션 sw">
+    <td class="rank">90</td>
+    <td class="cname">Xpeedic (芯禾科技)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">RF EDA/EM 시뮬레이션 SW</td>
+    <td class="rev">~$0.2억</td>
+    <td class="foundry">없음(SW)</td>
+    <td class="node">N/A</td>
+    <td class="outlook ol-pos">긍정적 — RF EDA 국산화, 5G mmWave 설계툴</td>
+  </tr>
+<tr data-tier="ASIC" data-name="intchains (鸿翔科技)" data-sector="암호화폐 채굴 asic(알트코인)">
+    <td class="rank">91</td>
+    <td class="cname">Intchains (鸿翔科技)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#fbbf24">ASIC</span></td>
+    <td class="sector-cell">암호화폐 채굴 ASIC(알트코인)</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">7nm~14nm</td>
+    <td class="outlook ol-mod">보통 — 나스닥 상장, Bitmain 대비 소규모</td>
+  </tr>
+<tr data-tier="MCU" data-name="mornsun digital (子회사)" data-sector="산업 mcu/전력ic">
+    <td class="rank">92</td>
+    <td class="cname">Mornsun Digital (子회사)</td>
+    <td class="hq">광저우</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">산업 MCU/전력IC</td>
+    <td class="rev">(Mornsun 산하)</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">0.18μm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 산업 전력관리</td>
+  </tr>
+<tr data-tier="MCU" data-name="ingenic iot (君正 子)" data-sector="ai mcu/저전력 soc">
+    <td class="rank">93</td>
+    <td class="cname">Ingenic IoT (君正 子)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">AI MCU/저전력 SoC</td>
+    <td class="rev">(자회사)</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 스마트 카메라·웨어러블</td>
+  </tr>
+<tr data-tier="아날로그" data-name="sg micro linear (圣邦 子)" data-sector="아날로그 선형ic/op-amp">
+    <td class="rank">94</td>
+    <td class="cname">SG Micro Linear (圣邦 子)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#4ade80">아날로그</span></td>
+    <td class="sector-cell">아날로그 선형IC/Op-Amp</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">TSMC</td>
+    <td class="node">0.18μm</td>
+    <td class="outlook ol-stable">안정적 — 정밀 아날로그IC, 산업·IoT</td>
+  </tr>
+<tr data-tier="MCU" data-name="qinheng (沁恒微电子)" data-sector="usb/시리얼 mcu">
+    <td class="rank">95</td>
+    <td class="cname">QinHeng (沁恒微电子)</td>
+    <td class="hq">난징</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">USB/시리얼 MCU</td>
+    <td class="rev">~$0.5억</td>
+    <td class="foundry">SMIC, Hua Hong</td>
+    <td class="node">55nm~0.18μm</td>
+    <td class="outlook ol-stable">안정적 — USB 인터페이스 MCU</td>
+  </tr>
+<tr data-tier="MCU" data-name="geehy auto (极海 차량라인)" data-sector="차량용 mcu">
+    <td class="rank">96</td>
+    <td class="cname">Geehy Auto (极海 차량라인)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#60a5fa">MCU</span></td>
+    <td class="sector-cell">차량용 MCU</td>
+    <td class="rev">(Geehy 산하)</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">55nm~90nm</td>
+    <td class="outlook ol-pos">긍정적 — 중국 OEM 차량 MCU 인증 흐름</td>
+  </tr>
+<tr data-tier="기타" data-name="nationz nfc/ble (子)" data-sector="nfc/ble 콤보ic">
+    <td class="rank">97</td>
+    <td class="cname">Nationz NFC/BLE (子)</td>
+    <td class="hq">선전</td>
+    <td><span class="tier-badge" style="--tc:#94a3b8">기타</span></td>
+    <td class="sector-cell">NFC/BLE 콤보IC</td>
+    <td class="rev">(Nationz 산하)</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">28nm~55nm</td>
+    <td class="outlook ol-stable">안정적 — 모바일결제·출입통제IC</td>
+  </tr>
+<tr data-tier="FPGA" data-name="fudan fpga (复旦 子)" data-sector="저전력 fpga">
+    <td class="rank">98</td>
+    <td class="cname">Fudan FPGA (复旦 子)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#818cf8">FPGA</span></td>
+    <td class="sector-cell">저전력 FPGA</td>
+    <td class="rev">(Fudan 산하)</td>
+    <td class="foundry">SMIC</td>
+    <td class="node">55nm~0.18μm</td>
+    <td class="outlook ol-pos">긍정적 — 저전력 산업 FPGA 국산화</td>
+  </tr>
+<tr data-tier="AI" data-name="vastai (瀚博半导体)" data-sector="ai 비디오 추론 soc">
+    <td class="rank">99</td>
+    <td class="cname">Vastai (瀚博半导体)</td>
+    <td class="hq">상하이</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI 비디오 추론 SoC</td>
+    <td class="rev">~$0.3억</td>
+    <td class="foundry">TSMC, SMIC</td>
+    <td class="node">12nm~16nm</td>
+    <td class="outlook ol-pos">긍정적 — AI 비디오 분석 엣지 배포</td>
+  </tr>
+<tr data-tier="AI" data-name="cambricon edge (思元 시리즈)" data-sector="ai 엣지 추론 모듈">
+    <td class="rank">100</td>
+    <td class="cname">Cambricon Edge (思元 시리즈)</td>
+    <td class="hq">베이징</td>
+    <td><span class="tier-badge" style="--tc:#22d3ee">AI</span></td>
+    <td class="sector-cell">AI 엣지 추론 모듈</td>
+    <td class="rev">(Cambricon 산하)</td>
+    <td class="foundry">SMIC(N+2)</td>
+    <td class="node">7nm</td>
+    <td class="outlook ol-pos">긍정적 — 스마트시티·산업 IoT 엣지 AI</td>
+  </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--text-mute);font-size:12px;margin-top:12px;">※ 'E' 또는 '~' 표기는 추정치를 의미합니다. SMIC N+2는 DUV 멀티패터닝 기반 7nm급 SMIC 내부 노드 명칭이며 TSMC N7과 직접 비교 불가합니다.</p>
+</section>
+
+<!-- 4. 파운드리 -->
+<section class="wrap" id="foundry">
+  <div class="section-head">
+    <span class="section-num">04 / FOUNDRY LANDSCAPE</span>
+    <h2>파운드리 사용 현황</h2>
+    <p>중국 ASIC 설계사의 파운드리 의존도는 본 산업 최대의 리스크 요인입니다. 미국 수출 규제로 TSMC 선단 공정 접근이 점진적으로 차단되며 SMIC 의존도가 확대되고 있습니다.</p>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>파운드리</th><th>중요도</th><th>주요 노드</th><th>주요 고객사</th><th>비고</th></tr></thead>
+      <tbody><tr>
+    <td class="f-name">SMIC (中)</td>
+    <td class="f-imp"><span class="stars">★★★★★</span></td>
+    <td class="f-node">7nm(N+2)~0.35μm</td>
+    <td class="f-cust">HiSilicon, Cambricon, Biren, Moore Threads, Hygon, UNISOC, GigaDevice 등 대부분</td>
+    <td class="f-note">중국 유일 선단공정. DUV 멀티패터닝 7nm. 2025 Capex 매출의 87%</td>
+  </tr>
+<tr>
+    <td class="f-name">TSMC (台)</td>
+    <td class="f-imp"><span class="stars">★★★★☆</span></td>
+    <td class="f-node">3nm~28nm</td>
+    <td class="f-cust">Will Semi, Goodix, Bitmain(고급), Montage, Silergy, Horizon Robotics</td>
+    <td class="f-note">성능 기준점. 2022년 이후 미국 제재 압박 확대</td>
+  </tr>
+<tr>
+    <td class="f-name">Hua Hong (中)</td>
+    <td class="f-imp"><span class="stars">★★★☆☆</span></td>
+    <td class="f-node">0.11μm~0.35μm</td>
+    <td class="f-cust">GigaDevice, Galaxycore, Fine Made 등 레거시 특화</td>
+    <td class="f-note">레거시 공정 특화. 12인치 웨이퍼 증설 중</td>
+  </tr>
+<tr>
+    <td class="f-name">Samsung Foundry</td>
+    <td class="f-imp"><span class="stars">★★☆☆☆</span></td>
+    <td class="f-node">4nm~14nm</td>
+    <td class="f-cust">MicroBT(일부)</td>
+    <td class="f-note">제재 후 TSMC 대안. 중국 팹리스 채택 제한적</td>
+  </tr>
+<tr>
+    <td class="f-name">Win Semi (台)</td>
+    <td class="f-imp"><span class="stars">★★☆☆☆</span></td>
+    <td class="f-node">GaAs/GaN</td>
+    <td class="f-cust">Vanchip, Maxscend(일부)</td>
+    <td class="f-note">RF 화합물 반도체 특화. PA칩 핵심</td>
+  </tr>
+<tr>
+    <td class="f-name">자체 팹 (IDM)</td>
+    <td class="f-imp"><span class="stars">★★☆☆☆</span></td>
+    <td class="f-node">다양</td>
+    <td class="f-cust">BYD Semi, StarPower, Fine Made, Sanan Opto</td>
+    <td class="f-note">하이브리드 IDM 모델. 전력·화합물 반도체 팹</td>
+  </tr></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 5. 전략분석 -->
+<section class="wrap" id="analysis">
+  <div class="section-head">
+    <span class="section-num">05 / STRATEGIC ANALYSIS</span>
+    <h2>전략 분석 및 핵심 테마</h2>
+  </div>
+
+  <div class="analysis-block">
+    <h3>AI 반도체: 구조적 수요 변곡점</h3>
+    <p>AI칩 분야는 기회주의적 성장에서 중국 디지털 경제의 구조적 필수재로 전환됐습니다. 엔비디아의 H20/B200 공급 불가로 거대한 내수 시장이 형성됐습니다.</p>
+    <ul>
+      <li>중국 AI칩 국산 매출: <b>$60억(2024) → $160억(2025E)</b> (Bernstein Research)</li>
+      <li>국산 점유율: <b>29% → 42%</b> (중국 AI칩 소비 기준)</li>
+      <li>SMIC N+2 병목: 모든 프리미엄 AI칩사가 단일 선단 노드 공유 → 차질 시 생태계 전체 연쇄</li>
+      <li>SW 생태계 가속: DeepSeek-V3.1의 FP8 파라미터가 국산칩 타깃 → HW-SW 동반 성숙</li>
+      <li>클러스터 우회: Huawei CloudMatrix 384칩 시스템으로 칩당 성능 격차를 인터커넥트로 보완</li>
+    </ul>
+  </div>
+
+  <div class="analysis-block">
+    <h3>비트코인 채굴 ASIC: 글로벌 과점과 관세 압박</h3>
+    <p>BTC 채굴 하드웨어는 중국이 글로벌을 지배하는 최대 반도체 하위 분야입니다. Bitmain(82%)·MicroBT(15%)·Canaan(2%)이 99%+ 독점합니다.</p>
+    <ul>
+      <li>Bitmain Antminer S21 Pro: <b>3nm TSMC</b>, 234 TH/s — 효율 선두</li>
+      <li>MicroBT Whatsminer M60S: 5nm/7nm, 경쟁적 에너지 효율</li>
+      <li>2025 미·중 관세 격화(100%+ → 25% 정착) → 3사 모두 미국 생산 거점 발표</li>
+      <li>Canaan: 나스닥 상장(CAN), 3사 중 최소, 경쟁 취약</li>
+    </ul>
+  </div>
+
+  <div class="analysis-block">
+    <h3>공정 기술 격차 분석</h3>
+    <p>SMIC N+2는 EUV 없이 DUV 멀티패터닝으로 구현, TSMC 최선단(N3E) 대비 약 2~3세대 뒤처진 것으로 추정됩니다. 전력 효율 격차가 AI 학습 워크로드 경쟁력에 직결됩니다.</p>
+    <ul>
+      <li>SMIC N+2 밀도: ~90~100M Tr/mm² (추정) vs TSMC N3: ~290M Tr/mm²</li>
+      <li>메모리 병목: 대다수 국산 AI칩이 HBM2E/GDDR6 사용 → CXMT HBM3 2026년 목표</li>
+      <li>2030 국산화 목표: 7nm 장비 100% 국산화, 14nm 안정 양산 (15차 5개년 계획)</li>
+      <li>EUV 프로토타입: 2025년 12월 선전에서 EUV 시제기 완성 보도 → 2028~2030 칩 생산 전망</li>
+    </ul>
+  </div>
+
+  <div class="analysis-block risk">
+    <h3>리스크 요인</h3>
+    <ul>
+      <li>미국 수출규제 확대: 엔티티리스트 추가(Biren, SOPHGO, SensTime 등), TSMC/삼성 추가 차단 가능</li>
+      <li>SMIC N+2 공급 집중: 다수 고프로파일 AI칩 프로그램이 제한된 7nm급 웨이퍼 경쟁</li>
+      <li>EDA 의존: Synopsys/Cadence 대안(Empyrean, Primarius) 선단 노드 기능 격차 3~5년</li>
+      <li>HBM 공급망: 국산 HBM(CXMT) 2026~2027년 양산 → 과도기 병목으로 AI 클러스터 처리량 제약</li>
+      <li>지정학: 대만 해협 긴장, FDPR 확대 적용, 동맹국의 미국 규제 동조</li>
+      <li>밸류에이션: Cambricon 시총 2025년 10배+ 급등 → 상업 매출 다각화에 지속성 좌우</li>
+    </ul>
+  </div>
+
+  <div class="analysis-block cat">
+    <h3>구조적 긍정 촉매</h3>
+    <ul>
+      <li>Big Fund III (3,440억 위안): 역대 최대 정부 반도체 펀드. AI칩·고성능메모리·장비 직접 타깃</li>
+      <li>15차 5개년 계획: 반도체 국가 1순위 전략 과제. 2030 자급률 80%</li>
+      <li>빅테크 수요: Baidu·Alibaba·Tencent·ByteDance 국산 AI칩 채택 의무화/인센티브</li>
+      <li>RISC-V 생태계: 오픈소스 ISA 가속, T-Head Xuantie로 ARM IP 의존 리스크 축소</li>
+      <li>레거시 공정 강세: 중국 22~40nm 글로벌 capacity 25%(2024) → 2028년 42% 전망(SEMI)</li>
+      <li>팹 건설 파이프라인: 2028년까지 신규 팹 108개 중 47개가 중국 → 신규 capacity의 약 44%</li>
+      <li>광 인터커넥트 슈퍼사이클: InnoLight·Eoptolink가 AI 데이터센터 400G/800G CPO 수요로 글로벌 수혜</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="sources">
+    <h4>참고 자료 및 방법론</h4>
+    <p>
+      • AspenCore China / EE Times: China Fabless 100 — 2024 Edition &nbsp;•&nbsp; TrendForce: China IC Design Industry Reports (2024–2025)<br>
+      • Bernstein Research: China AI Chip Market Share Analysis (2025) &nbsp;•&nbsp; Univ. of Cambridge CCAF: Bitcoin ASIC Market Study (2025)<br>
+      • SEMI: World Fab Watch (2025) &nbsp;•&nbsp; SIA: China Semiconductor Market Share Report &nbsp;•&nbsp; KOTRA 시안무역관: 중국 반도체 공급망 분석 (2024)<br>
+      • 미래에셋증권: 중국 반도체 10년 투자 리포트 (2025) &nbsp;•&nbsp; ITIF: How Innovative Is China in Semiconductors? (2024) &nbsp;•&nbsp; Reuters: SMIC 기술 동향 (2024–2025)
+    </p>
+  </div>
+  <p>© 2026 Claude AI Research · 본 보고서는 공개 데이터 기반 추정치를 포함합니다 · 비상장사 매출은 업계 추정치입니다.</p>
+</footer>
+
+<script>
+const tableBody = document.querySelector('#mainTable tbody');
+const rows = Array.from(tableBody.querySelectorAll('tr'));
+const filterBtns = document.querySelectorAll('.filter-btn');
+const searchBox = document.getElementById('searchBox');
+let activeFilter = 'all';
+
+function applyFilters(){
+  const q = searchBox.value.trim().toLowerCase();
+  rows.forEach(row=>{
+    const tier = row.dataset.tier;
+    const name = row.dataset.name;
+    const sector = row.dataset.sector;
+    const matchFilter = (activeFilter==='all') || (tier===activeFilter);
+    const matchSearch = !q || name.includes(q) || sector.includes(q);
+    row.classList.toggle('hidden', !(matchFilter && matchSearch));
+  });
+}
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    applyFilters();
+  });
+});
+searchBox.addEventListener('input', applyFilters);
+</script>
+</body>
+</html>
